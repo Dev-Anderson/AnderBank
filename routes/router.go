@@ -8,6 +8,8 @@ import (
 func Initialize() {
 	router := gin.Default()
 
+	ConfigRoutes(router)
+
 	port := config.LoadEnv().PortHttp
 	router.Run("localhost:" + port)
 }

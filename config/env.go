@@ -36,7 +36,7 @@ func setEnv(fileName string) error {
 func LoadEnv() schemas.Env {
 	err := setEnv(".env")
 	if err != nil {
-		fmt.Errorf("Error ao carregar o arquivo .env", err)
+		fmt.Println("Error ao carregar o arquivo .env", err)
 	}
 	return schemas.Env{
 		Host:     os.Getenv("anderbank-hostdb"),
