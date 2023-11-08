@@ -15,6 +15,7 @@ func ConfigRoutes(router *gin.Engine) *gin.Engine {
 		user := main.Group("user")
 		{
 			user.GET("/", controllers.GetAllUser)
+			user.POST("/", controllers.CreateUser)
 		}
 	}
 

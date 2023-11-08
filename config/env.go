@@ -39,11 +39,14 @@ func LoadEnv() schemas.Env {
 		fmt.Println("Error ao carregar o arquivo .env", err)
 	}
 	return schemas.Env{
-		Host:     os.Getenv("anderbank-hostdb"),
-		Port:     os.Getenv("anderbank-portdb"),
-		User:     os.Getenv("anderbank-userdb"),
-		Password: os.Getenv("anderbank-passworddb"),
-		DBName:   os.Getenv("anderbank-dbname"),
-		PortHttp: os.Getenv("anderbank-porthttp"),
+		Host:        os.Getenv("anderbank-hostdb"),
+		Port:        os.Getenv("anderbank-portdb"),
+		User:        os.Getenv("anderbank-userdb"),
+		Password:    os.Getenv("anderbank-passworddb"),
+		DBName:      os.Getenv("anderbank-dbname"),
+		PortHttp:    os.Getenv("anderbank-porthttp"),
+		SecretKey:   os.Getenv("anderbank-secretkey"),
+		Issure:      os.Getenv("anderbank-issure"),
+		TimeExpires: os.Getenv("anderbank-timeexpires"),
 	}
 }
