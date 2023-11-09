@@ -31,7 +31,7 @@ func CreateUser(c *gin.Context) {
 
 	user.Password = services.Sha256Encoder(user.Password)
 
-	err = models.CreateUser(&user)
+	err = models.CreateUser(user.Name, user.Email, user.Password)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "nao foi possivel criar o usuario" + err.Error()})
 		return

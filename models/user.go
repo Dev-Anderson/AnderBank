@@ -44,16 +44,16 @@ type User struct {
 	Password string `json:"password"`
 }
 
-func CreateUser(u *User) error {
+func CreateUser(name, email, password string) error {
 	db, err := database.ConnectDatabase()
 	if err != nil {
 		panic(err)
 	}
 	defer db.Close()
 
-	query := "insert into anderbank_user (name, email, password, dateCreate) values($1, $2, $3, now());"
+	query := `insert into anderbank_user (name, email, password, "dateCreate") values ($1, $2, $3, now());`
 
-	err = db.QueryRow(query, u).Err()
+	err = db.QueryRow(query, name, email, password).Err()
 
 	return err
 }
