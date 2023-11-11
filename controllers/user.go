@@ -1,8 +1,8 @@
 package controllers
 
 import (
-	"fmt"
 	"net/http"
+	"strconv"
 
 	"github.com/dev-anderson/AnderBank/models"
 	"github.com/dev-anderson/AnderBank/services"
@@ -27,8 +27,6 @@ func CreateUser(c *gin.Context) {
 		return
 	}
 
-	fmt.Println(user)
-
 	user.Password = services.Sha256Encoder(user.Password)
 
 	err = models.CreateUser(user.Name, user.Email, user.Password)
@@ -38,4 +36,48 @@ func CreateUser(c *gin.Context) {
 	}
 
 	c.Status(http.StatusCreated)
+}
+
+func GetIDUser(c *gin.Context) {
+	id := c.Params.ByName("id")
+	idUser, err := strconv.Atoi(id)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "ID usuario invalido"})
+		return
+	}
+
+	user, err := models.GetUserID(idUser)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Falha ao buscar o user por ID"})
+		return
+	}
+
+	c.JSON(http.StatusOK, user)
+}
+
+func GetAllUserDelete(c *gin.Context) {
+	user, err := models.GetAllUserDelete()
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Falha ao buscar usuarios deletados"})
+		return
+	}
+
+	c.JSON(http.StatusOK, user)
+}
+
+func DeleteUser(c *gin.Context) {
+	id := c.Params.ByName("id")
+	idUser, err := strconv.Atoi(id)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "ID usuario invalido"})
+		return
+	}
+
+	err = models.DeleteIDUser(idUser)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Falha ao deletar user"})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"message": "Usuario deletado com sucesso"})
 }

@@ -37,7 +37,7 @@ func isFKExists(db *sql.DB, tableName, fk string) (bool, error) {
 
 func TableUser(db *sql.DB) {
 	defer db.Close()
-	tableExists, err := verifyTable(db, "user")
+	tableExists, err := verifyTable(db, "anderbank_user")
 	if tableExists == false {
 		createTableUser := `
 		CREATE TABLE "anderbank_user" (
@@ -47,7 +47,9 @@ func TableUser(db *sql.DB) {
 			"password" text, 
 			"balance" numeric, 
 			"dateCreate" timestamp, 
-			"dateAtualization" timestamp
+			"dateAtualization" timestamp, 
+			"dateDelete" timestamp, 
+			"active" bool 
 		);`
 
 		_, err := db.Exec(createTableUser)
@@ -59,6 +61,6 @@ func TableUser(db *sql.DB) {
 		fmt.Println("Table anderbank_user already exists")
 	}
 	if err != nil {
-		fmt.Println("Error in verify table user", err.Error())
+		fmt.Println("Error in verify table anderbank_user", err.Error())
 	}
 }

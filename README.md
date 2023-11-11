@@ -23,3 +23,7 @@ Projeto para desenovlver um banco digital, apenas para estudos.
 - Air (live reloa) 
 
 Neste projeto foi optado por não utilizar nenhum ORM será utilizado sempre libs nativas. 
+
+## TODO
+- Verificar quando o id user nao existir no banco de dados, verificar o que deve ser enviado para o usuario. 
+- testar parte de deletar user
