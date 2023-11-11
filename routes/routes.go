@@ -18,11 +18,22 @@ func ConfigRoutes(router *gin.Engine) *gin.Engine {
 			user.GET("/:id", controllers.GetIDUser)
 			user.GET("/delete/", controllers.GetAllUserDelete)
 			user.POST("/", controllers.CreateUser)
-			user.POST("/delete/:id", controllers.DeleteUser)
+			user.DELETE("/delete/:id", controllers.DeleteUser)
 		}
 		login := main.Group("login")
 		{
 			login.POST("/", controllers.Login)
+		}
+		account := main.Group("account")
+		{
+			account.GET("/", controllers.GetAllAccounts)
+			account.POST("/", controllers.CreateAccount)
+			account.GET("/balance/:id", controllers.GetBalanceAccount)
+			//criar conta
+			//consulta conta
+
+			// altera conta
+			// deleta conta
 		}
 	}
 

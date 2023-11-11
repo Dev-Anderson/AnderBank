@@ -2,14 +2,13 @@ package main
 
 import (
 	"github.com/dev-anderson/AnderBank/database"
+	"github.com/dev-anderson/AnderBank/database/table"
 	"github.com/dev-anderson/AnderBank/routes"
 )
 
 func main() {
-	db, err := database.ConnectDatabase()
-	if err != nil {
-		panic(err)
-	}
-	database.TableUser(db)
+	db, _ := database.ConnectDatabase()
+	table.TableAccount(db)
+	table.TableUser(db)
 	routes.Initialize()
 }
