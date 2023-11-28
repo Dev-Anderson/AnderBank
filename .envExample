@@ -1,0 +1,9 @@
+anderbank-hostdb=
+anderbank-portdb=
+anderbank-userdb=
+anderbank-passworddb=
+anderbank-dbname=
+anderbank-porthttp=9001
+anderbank-secretkey=anderbank
+anderbank-issure=anderbank
+anderbank-timeexpires=2

@@ -24,38 +24,40 @@ Projeto para desenovlver um banco digital, apenas para estudos.
 Neste projeto foi optado por não utilizar nenhum ORM será utilizado sempre libs nativas. 
 
 ## TODO
-A lista de tarefas esta sendo feita conforme e montado o projeto
-🚜 melhorias 
-🚫 bugs
-🔰 coisas para fazer
-🧪 teste
+<ul>
+<li>🚧 melhorias</li>
+<li>🚫 bugs</li>
+<li>🧪 Teste </li>
+</ul>
 <br>
 <hr>
 <br>
 
-🔰 Verificar se precisa de mais algum campo no schema de user
-🔰 Por hora adicionar apenas recursos do debito 
-🔰 Rota para consulta de saldo, o que deve ser mostrado para o usuario
-🔰 Rota para deletar a conta, neste caso nao deve deletar apenas inativar 
-🔰 Rota para fazer um update no saldo do usuario, repassando apenas o ID do usuario de origem 
-🔰 Adicionar recurso para transferir dinheiro entre os usuarios
-🔰 Criar uma nova tabela para extrato da conta de debito, conforme e feito no nubank
+### Lista das tarefas de teste
+| Status | Tipo TODO | Descrição | 
+| ✅ | 🧪 | Rota home get/home |
+| ❌ | 🧪 | Rota user get/user |
+| ✅ | 🧪 | Rota user get/:id | 
+| ✅ | 🧪 | Rota user get/delete/ |
+| ✅ | 🧪 | Rota user post/user |
+| ✅ | 🧪 | Rota user delete/:id |
+| ❌ | 🧪 | Rota account get/account |
+| ✅ | 🧪 | Rota account get/account/todos |
+| ❌ | 🧪 | Rota account post/account/ |
+| | 🧪 | Rota account get/account/balance/:id |
+| | 🧪 | Rota account get/account/balance/delete/:id |
 
 
-🚫 Ao utilizar a rota "account/balance" e repassar um numero de conta que nao existe, esta quebrando a aplicacao
 
-🚜 Adicionar recurso para o pix
-🚜 Numero da conta, melhorar a funcao para gerar esse numero
+### Lista das tarefas bug
+| Status |Tipo TODO | Descrição | 
+|  |🚫| A rota user get/ deveria retornar apenas o usuarios ativos |
+|  |🚫| A rota account/ esta retornando todos os dados da conta, so deve retornar os seguintes campos (numberAccount, balance, dateCreate, debit, credit) as demais informacoes sao desnecessarias |
+| ✅ |🚫| Dentro da rota user/delete/:id o verbo está incorreto, deveria ser um post ou put |
+|  |🚫| O campo "numberAccount" deve ser gerado automaticamente, verificar a rota post account/|
 
-### Testes
 
-| ✅ || Metodo | Rota | Descricao |
-| ❌ | get | user/ | Consulta todos os usuarios ativos |
-| ❌ | get | user/id | Consulta uma determinado usuario | 
-| ❌ | get | user/delete/ | Consulta todos os usuarios inativos |
-| ❌ | post | user/ | Cria um novo Usuario | 
-| ❌ | delete | user/delete/id | Deleta um usuario | 
-| ❌ | post | login/ | Gera um numero de token | 
-| ❌ | get | account/ | Lista todas as contas ativas | 
-| ❌ | post | account/ | Cria uma nova conta | 
-| ❌ | get | account/balance/id | Consulta uma saldo, atraves do numero da conta | 
+### Lista das tarefas melhorias
+| Status | Tipo TODO | Descrição | 
+| | 🚧 | Criar uma nova rota para conseguir ver todos os usuários, ativos e inativos |
+| | 🚧 | Organizar as configuracoes do Isominia dentro da pasta do projeto, para importacao |

@@ -9,6 +9,55 @@ import (
 	"github.com/dev-anderson/AnderBank/services"
 )
 
+type Accounts struct {
+	ID            int     `json:"id"`
+	NumberAccount string  `json:"numberaccount"`
+	Balance       float64 `json:"balance"`
+	DateCreate    string  `json:"datecreate"`
+	DateUpdate    *string `json:"dateupdate"` //o campo pode ser null no banco de dados
+	DateDelete    *string `json:"datedelete"` //o capmo pode ser null no banco de dados
+	Debit         bool    `json:"debit"`
+	Credit        bool    `json:"credit"`
+	Active        bool    `json:"active"`
+}
+
+func (a *Accounts) TodasContas() ([]*Accounts, error) {
+	db, err := database.ConnectDatabase()
+	if err != nil {
+		log.Fatal("Erro ao conectar com o banco de dados", err.Error())
+	}
+	defer db.Close()
+
+	query := `select id, "numberAccount", balance, "dateCreate", "dateUpdate", "dateDelete", debit, credit, active from anderbank_account`
+
+	rows, err := db.Query(query)
+	if err != nil {
+		return nil, err
+	}
+
+	var accounts []*Accounts
+	for rows.Next() {
+		var account Accounts
+		err := rows.Scan(
+			&account.ID,
+			&account.NumberAccount,
+			&account.Balance,
+			&account.DateCreate,
+			&account.DateUpdate,
+			&account.DateDelete,
+			&account.Debit,
+			&account.Credit,
+			&account.Active,
+		)
+		if err != nil {
+			return nil, err
+		}
+
+		accounts = append(accounts, &account)
+	}
+	return accounts, nil
+}
+
 func GetAllAccounts() ([]schemas.Account, error) {
 	db, err := database.ConnectDatabase()
 	if err != nil {
@@ -64,7 +113,7 @@ func CreateAccount(balance float64, debit bool, credit bool) error {
 	return err
 }
 
-func BalanceAccout(numberAccount string) (float64, error) {
+func BalanceAccount(numberAccount string) (float64, error) {
 	db, err := database.ConnectDatabase()
 	if err != nil {
 		log.Fatal("Erro ao conectar com o banco de dados", err.Error())
@@ -81,4 +130,22 @@ func BalanceAccout(numberAccount string) (float64, error) {
 
 	return balance, nil
 
+}
+
+func DeleteAccount(numberAccount string) error {
+	db, err := database.ConnectDatabase()
+	if err != nil {
+		log.Fatal("Erro ao conectar com o banco de dados", err.Error())
+	}
+	defer db.Close()
+
+	query := `select id from anderbank_account where "numberAccount"= $1`
+	var id int
+
+	db.QueryRow(query, numberAccount).Scan(&id)
+
+	queryUpdate := `update anderbank_account set active = false where id = $1`
+	err = db.QueryRow(queryUpdate, id).Err()
+
+	return err
 }

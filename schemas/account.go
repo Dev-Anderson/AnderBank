@@ -11,5 +11,5 @@ type Account struct {
 	DateDelete    time.Time `json:"datedelete"`
 	Debit         bool      `json:"debit"`
 	Credit        bool      `json:"credit"`
-	Active        bool
+	Active        bool      `json:"active"`
 }
