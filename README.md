@@ -29,12 +29,10 @@ Neste projeto foi optado por não utilizar nenhum ORM será utilizado sempre lib
 <li>🚫 bugs</li>
 <li>🧪 Teste </li>
 </ul>
-<br>
-<hr>
-<br>
 
-### Lista das tarefas de teste
-| Status | Tipo TODO | Descrição | 
+### Lista de tarefas do teste
+| Status | Tipo | Descricao |
+| :---   | :---   | ------------- |
 | ✅ | 🧪 | Rota home get/home |
 | ❌ | 🧪 | Rota user get/user |
 | ✅ | 🧪 | Rota user get/:id | 
@@ -47,17 +45,16 @@ Neste projeto foi optado por não utilizar nenhum ORM será utilizado sempre lib
 | | 🧪 | Rota account get/account/balance/:id |
 | | 🧪 | Rota account get/account/balance/delete/:id |
 
-
-
-### Lista das tarefas bug
-| Status |Tipo TODO | Descrição | 
+### Lista de tarefas do bugs
+| Status | Tipo | Descricao |
+| :---   | :---   | ------------- |
 |  |🚫| A rota user get/ deveria retornar apenas o usuarios ativos |
 |  |🚫| A rota account/ esta retornando todos os dados da conta, so deve retornar os seguintes campos (numberAccount, balance, dateCreate, debit, credit) as demais informacoes sao desnecessarias |
 | ✅ |🚫| Dentro da rota user/delete/:id o verbo está incorreto, deveria ser um post ou put |
 |  |🚫| O campo "numberAccount" deve ser gerado automaticamente, verificar a rota post account/|
 
-
-### Lista das tarefas melhorias
-| Status | Tipo TODO | Descrição | 
+### Lista de tarefas das melhorias
+| Status | Tipo | Descricao |
+| :---   | :---   | ------------- |
 | | 🚧 | Criar uma nova rota para conseguir ver todos os usuários, ativos e inativos |
 | | 🚧 | Organizar as configuracoes do Isominia dentro da pasta do projeto, para importacao |
